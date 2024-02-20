@@ -13,13 +13,14 @@ extern "C" {
 // here can change to uint64_t, if you system is 64bit.
 #ifdef BIT_ARRAY_CONFIG_64
 typedef uint64_t bit_array_t;
+#define BIT_ARRAY_BIT(n)  (1ULL << (n))
 #else
 typedef uint32_t bit_array_t;
+#define BIT_ARRAY_BIT(n)  (1UL << (n))
 #endif
 typedef bit_array_t bit_array_val_t;
 
 
-#define BIT_ARRAY_BIT(n)  (1UL << (n))
 
 #define BIT_ARRAY_BITS (sizeof(bit_array_val_t) * 8)
 

@@ -306,6 +306,27 @@ static void test_shift(void)
     SUITE_END();
 }
 
+static void test_cmp(void)
+{
+    SUITE_START("test_cmp");
+
+    bit_array_clear_all(test_bit_array, TEST_BIT_ARRAY_TOTAL);
+    bit_array_from_str(test_bit_array,
+                       "01010000 10000000 01000000 00000000 01010000 10000000 0101");
+
+    BIT_ARRAY_DEFINE(tmp_array, TEST_BIT_ARRAY_TOTAL);
+    bit_array_copy_all(tmp_array, test_bit_array, TEST_BIT_ARRAY_TOTAL);
+
+    ASSERT(bit_array_cmp(test_bit_array, tmp_array, TEST_BIT_ARRAY_TOTAL) == 0);
+
+    bit_array_from_str(test_bit_array,
+                       "11010000 10000000 01000000 00000000 01010000 10000000 0101");
+
+    ASSERT(bit_array_cmp(test_bit_array, tmp_array, TEST_BIT_ARRAY_TOTAL) != 0);
+
+    SUITE_END();
+}
+
 int main(void)
 {
     test_assign();
@@ -314,6 +335,7 @@ int main(void)
     test_copy();
     test_logic();
     test_shift();
+    test_cmp();
 
     return 0;
 }

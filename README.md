@@ -23,7 +23,7 @@
 - **README.md**：说明文档
 
 ```shell
-bare_task_msg
+bit_array_static
  ├── bit_array.h
  ├── build.mk
  ├── main.c

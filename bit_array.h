@@ -594,9 +594,21 @@ static inline void bit_array_shift_left(bit_array_t *target, int num_bits, int s
     _bit_array_set_region(target, 0, shift_dist, action);
 }
 
-/**
- * \}
- */
+//
+// Comparisons
+//
+
+// Compare two bit arrays by value stored, with index 0 being the Least
+// Significant Bit (LSB). Arrays must have the same length.
+// returns:
+//  >0 iff bitarr1 > bitarr2
+//   0 iff bitarr1 == bitarr2
+//  <0 iff bitarr1 < bitarr2
+static inline int bit_array_cmp(const bit_array_t *bitarr1, const bit_array_t *bitarr2,
+                                int num_bits)
+{
+    return memcmp(bitarr1, bitarr2, BIT_ARRAY_BITMAP_SIZE(num_bits) * sizeof(bit_array_val_t));
+}
 
 #ifdef __cplusplus
 }
